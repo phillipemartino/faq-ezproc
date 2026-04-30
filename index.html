@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Interno – EZPROC + COUPA + FINANCEIRO</title>
+    <style>
+        :root {
+            --primary: #1a56db;
+            --primary-light: #e8eefb;
+            --primary-dark: #0f3a8e;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #10b981;
+            --success-light: #d1fae5;
+            --danger: #ef4444;
+            --danger-light: #fee2e2;
+            --info: #6366f1;
+            --info-light: #e0e7ff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-500: #6b7280;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --radius: 12px;
+            --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.08), 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            justify-content: center;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--gray-700);
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            transition: all 0.2s;
+            white-space: nowrap;
+            border: 1px solid transparent;
+        }
+
+        .nav a:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Main container */
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .section-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .section-header h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 1rem;
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-header {
+            padding: 1rem 1.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            user-select: none;
+            transition: background 0.2s;
+        }
+
+        .card-header:hover {
+            background: var(--gray-50);
+        }
+
+        .card-header .icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .card-header h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            flex: 1;
+        }
+
+        .card-header .chevron {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s;
+            color: var(--gray-500);
+            flex-shrink: 0;
+        }
+
+        .card.open .card-header .chevron {
+            transform: rotate(180deg);
+        }
+
+        .card-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .card.open .card-body {
+            max-height: 3000px;
+        }
+
+        .card-content {
+            padding: 0 1.25rem 1.25rem 1.25rem;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        .card-content p {
+            margin: 0.75rem 0;
+            color: var(--gray-700);
+        }
+
+        /* Steps */
+        .steps {
+            margin: 1rem 0;
+        }
+
+        .step {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.6rem 0;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .step-text {
+            color: var(--gray-700);
+            font-size: 0.95rem;
+        }
+
+        /* Lists */
+        .check-list {
+            list-style: none;
+            margin: 0.75rem 0;
+        }
+
+        .check-list li {
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--gray-700);
+        }
+
+        .check-list li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .bullet-list {
+            list-style: none;
+            margin: 0.75rem 0;
+        }
+
+        .bullet-list li {
+            padding: 0.35rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--gray-700);
+        }
+
+        .bullet-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0.3rem;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-success { background: var(--success-light); color: #065f46; }
+        .badge-danger { background: var(--danger-light); color: #991b1b; }
+        .badge-info { background: var(--info-light); color: #3730a3; }
+        .badge-warning { background: var(--accent-light); color: #92400e; }
+
+        /* Alert */
+        .alert {
+            padding: 0.85rem 1rem;
+            border-radius: 8px;
+            margin: 0.75rem 0;
+            font-size: 0.9rem;
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
+        }
+
+        .alert-warning {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            color: #92400e;
+        }
+
+        .alert-danger {
+            background: var(--danger-light);
+            border-left: 4px solid var(--danger);
+            color: #991b1b;
+        }
+
+        .alert-info {
+            background: var(--info-light);
+            border-left: 4px solid var(--info);
+            color: #3730a3;
+        }
+
+        .alert-success {
+            background: var(--success-light);
+            border-left: 4px solid var(--success);
+            color: #065f46;
+        }
+
+        /* Decision box */
+        .decision-box {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.75rem 0;
+        }
+
+        .decision-box h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .decision-item {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.4rem 0;
+            align-items: flex-start;
+        }
+
+        .decision-arrow {
+            color: var(--primary);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* Flow header */
+        .flow-header {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 0.75rem 1rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0 0.75rem 0;
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 1rem;
+        }
+
+        /* Flow diagram */
+        .flow-diagram {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+            margin: 1.25rem 0;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .flow-step {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            border: 1px solid rgba(26,86,219,0.2);
+        }
+
+        .flow-arrow {
+            color: var(--gray-300);
+            font-size: 1.2rem;
+        }
+
+        /* Sub-list */
+        .sub-list {
+            margin-left: 1.5rem;
+            margin-top: 0.25rem;
+        }
+
+        .sub-list li {
+            font-size: 0.9rem;
+        }
+
+        /* Label */
+        .label {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        /* Table-like grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin: 0.75rem 0;
+        }
+
+        .info-item {
+            background: var(--gray-50);
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .info-item .info-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-item .info-value {
+            font-size: 0.95rem;
+            color: var(--gray-800);
+            font-weight: 500;
+        }
+
+        /* Best practices */
+        .best-practice {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.85rem 1rem;
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .best-practice:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .best-practice .bp-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--danger-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+
+        .best-practice .bp-text {
+            font-size: 0.95rem;
+            color: var(--gray-700);
+        }
+
+        /* Search */
+        .search-container {
+            max-width: 500px;
+            margin: 1.5rem auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.85rem 1rem 0.85rem 2.75rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 50px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+            background: white;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-500);
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray-500);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--gray-200);
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.5rem; }
+            .container { padding: 0 1rem; }
+            .nav a { font-size: 0.7rem; padding: 0.3rem 0.6rem; }
+            .info-grid { grid-template-columns: 1fr; }
+            .flow-diagram { flex-direction: column; }
+            .flow-arrow { transform: rotate(90deg); }
+        }
+
+        /* Scroll margin for anchors */
+        [id] {
+            scroll-margin-top: 80px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>FAQ INTERNO – EZPROC + COUPA + FINANCEIRO</h1>
+        <p>Baseado no material "Macros - Atualizadas"</p>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-container">
+        <div class="nav">
+            <a href="#visao-geral">Visão Geral</a>
+            <a href="#ezproc">EZPROC</a>
+            <a href="#financeiro">Financeiro</a>
+            <a href="#alteracoes">Alterações Cadastrais</a>
+            <a href="#coupa">Coupa</a>
+            <a href="#homologacao">Homologação</a>
+            <a href="#powerbi">Power BI</a>
+            <a href="#especiais">Casos Especiais</a>
+            <a href="#boas-praticas">Boas Práticas</a>
+        </div>
+    </div>
+
+    <!-- Search -->
+    <div class="container">
+        <div class="search-container">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" placeholder="Buscar no FAQ..." id="searchInput" oninput="filterCards()">
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- 1. VISÃO GERAL -->
+        <div class="section" id="visao-geral">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--primary-light); color: var(--primary);">🧭</div>
+                <h2>1. Visão Geral da Jornada do Fornecedor</h2>
+            </div>
+
+            <div class="card open" data-search="fluxo completo macro visão jornada fornecedor">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">📌</span>
+                    <h3>Fluxo completo (macro visão)</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="flow-diagram">
+                            <div class="flow-step">Cadastro na EZPROC</div>
+                            <span class="flow-arrow">→</span>
+                            <div class="flow-step">Pagamento da assinatura</div>
+                            <span class="flow-arrow">→</span>
+                            <div class="flow-step">Processamento (até 5 dias)</div>
+                            <span class="flow-arrow">→</span>
+                            <div class="flow-step">Direcionamento</div>
+                            <span class="flow-arrow">→</span>
+                            <div class="flow-step">Homologação</div>
+                            <span class="flow-arrow">→</span>
+                            <div class="flow-step">Acesso ao Coupa</div>
+                            <span class="flow-arrow">→</span>
+                            <div class="flow-step">Cotação → Pedido (PO)</div>
+                            <span class="flow-arrow">→</span>
+                            <div class="flow-step">Execução do serviço</div>
+                            <span class="flow-arrow">→</span>
+                            <div class="flow-step">Criação da FRS</div>
+                            <span class="flow-arrow">→</span>
+                            <div class="flow-step">Aprovação</div>
+                            <span class="flow-arrow">→</span>
+                            <div class="flow-step">Faturamento</div>
+                        </div>
+                        <div class="decision-box">
+                            <h4>Direcionamento</h4>
+                            <div class="decision-item">
+                                <span class="decision-arrow">→</span>
+                                <span><strong>Já homologado:</strong> segue direto para o Coupa</span>
+                            </div>
+                            <div class="decision-item">
+                                <span class="decision-arrow">→</span>
+                                <span><strong>Novo fornecedor:</strong> inicia processo de homologação</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. EZPROC -->
+        <div class="section" id="ezproc">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--info-light); color: var(--info);">🧾</div>
+                <h2>2. FAQ – EZPROC (Cadastro, Adesão e Plano)</h2>
+            </div>
+
+            <div class="card" data-search="o que é ezproc plataforma gestão fornecedores">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>O que é a EZPROC?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p>Plataforma de gestão de fornecedores que centraliza:</p>
+                        <ul class="check-list">
+                            <li>Cadastro</li>
+                            <li>Homologação</li>
+                            <li>Cotações</li>
+                            <li>Documentos</li>
+                            <li>Pagamentos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="como fornecedor cadastra cadastro passo a passo ezproc">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Como o fornecedor se cadastra?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p class="label">Passo a passo:</p>
+                        <div class="steps">
+                            <div class="step"><div class="step-number">1</div><div class="step-text">Acessar: <strong>www.ezproc.com.br</strong></div></div>
+                            <div class="step"><div class="step-number">2</div><div class="step-text">Clicar em cadastro</div></div>
+                            <div class="step"><div class="step-number">3</div><div class="step-text">Preencher dados da empresa</div></div>
+                            <div class="step"><div class="step-number">4</div><div class="step-text">Confirmar e-mail</div></div>
+                            <div class="step"><div class="step-number">5</div><div class="step-text">Finalizar adesão</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="não recebeu email confirmação spam suporte reenvio">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>O que fazer se não recebeu o e-mail?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="steps">
+                            <div class="step"><div class="step-number">1</div><div class="step-text">Verificar spam/lixo eletrônico</div></div>
+                            <div class="step"><div class="step-number">2</div><div class="step-text">Validar e-mail digitado</div></div>
+                            <div class="step"><div class="step-number">3</div><div class="step-text">Solicitar reenvio</div></div>
+                            <div class="step"><div class="step-number">4</div><div class="step-text">Se necessário → contatar suporte</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="formas pagamento pix boleto cartão">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Quais são as formas de pagamento?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <div class="info-label">PIX</div>
+                                <div class="info-value">Imediato</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Boleto</div>
+                                <div class="info-value">Até 3 dias úteis</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Cartão</div>
+                                <div class="info-value">Até 2 dias úteis</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="como calculado plano faturamento">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Como é calculado o plano?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <ul class="bullet-list">
+                            <li>Base: faturamento dos últimos 12 meses</li>
+                            <li>Pode sofrer revisão periódica</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="cobrança proporcional ciclo período">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Existe cobrança proporcional?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="alert alert-info">
+                            <span>ℹ️</span>
+                            <span><strong>Sim.</strong> Se entrar no meio do ciclo → valor proporcional ao período restante.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="cobrança complementar ajuste reenquadramento">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Pode haver cobrança complementar?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p><strong>Sim.</strong> Quando há:</p>
+                        <ul class="bullet-list">
+                            <li>Ajuste de faturamento</li>
+                            <li>Reenquadramento do plano</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="alteração cnpj formulário solicitar">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Como solicitar alteração de CNPJ?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="steps">
+                            <div class="step"><div class="step-number">1</div><div class="step-text">Solicitar formulário</div></div>
+                            <div class="step"><div class="step-number">2</div><div class="step-text">Preencher e assinar</div></div>
+                            <div class="step"><div class="step-number">3</div><div class="step-text">Enviar para análise</div></div>
+                            <div class="step"><div class="step-number">4</div><div class="step-text">Aguardar retorno</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. FINANCEIRO -->
+        <div class="section" id="financeiro">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--success-light); color: var(--success);">💰</div>
+                <h2>3. FAQ – Financeiro (N1)</h2>
+            </div>
+
+            <!-- FLUXO 1: BOLETO -->
+            <div class="flow-header">🔁 Fluxo 1: Boleto</div>
+
+            <div class="card" data-search="enviar boleto ezproc faturágil cobranças vencimento">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Como enviar boleto?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p class="label">Passo a passo:</p>
+                        <div class="steps">
+                            <div class="step"><div class="step-number">1</div><div class="step-text"><strong>Validar no Ezproc:</strong> Forma de pagamento selecionada?</div></div>
+                            <div class="step"><div class="step-number">2</div><div class="step-text"><strong>Acessar Faturágil:</strong> Aba "Cobranças e boletos"</div></div>
+                            <div class="step"><div class="step-number">3</div><div class="step-text"><strong>Verificar:</strong> Status e Vencimento</div></div>
+                        </div>
+
+                        <div class="decision-box">
+                            <h4>Decisão</h4>
+                            <div class="decision-item">
+                                <span class="badge badge-success">Boleto válido</span>
+                                <span>→ Baixar e Enviar</span>
+                            </div>
+                            <div class="decision-item">
+                                <span class="badge badge-warning">Boleto vencido</span>
+                                <span>→ Atualizar (+5 dias úteis) e Reenviar</span>
+                            </div>
+                            <div class="decision-item">
+                                <span class="badge badge-danger">Sem forma de pagamento</span>
+                                <span>→ Orientar cadastro</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FLUXO 2: NOTA FISCAL -->
+            <div class="flow-header">🔁 Fluxo 2: Nota Fiscal</div>
+
+            <div class="card" data-search="enviar nota fiscal nf faturágil cnpj competência">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Como enviar NF?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p class="label">Passo a passo:</p>
+                        <div class="steps">
+                            <div class="step"><div class="step-number">1</div><div class="step-text">Validar pagamento</div></div>
+                            <div class="step"><div class="step-number">2</div><div class="step-text">Se pago: Buscar no Faturágil</div></div>
+                            <div class="step"><div class="step-number">3</div><div class="step-text">Filtrar por CNPJ + competência</div></div>
+                            <div class="step"><div class="step-number">4</div><div class="step-text">Enviar</div></div>
+                        </div>
+                        <div class="alert alert-warning">
+                            <span>⚠️</span>
+                            <div>
+                                <strong>Regras:</strong>
+                                <ul class="bullet-list">
+                                    <li>NF só é emitida após pagamento</li>
+                                    <li>Prazo: até 2 dias úteis</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FLUXO 3: PRORROGAÇÃO -->
+            <div class="flow-header">🔁 Fluxo 3: Prorrogação de Boleto</div>
+
+            <div class="card" data-search="prorrogação boleto ajustar prazo n2">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Como fazer prorrogação de boleto?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="steps">
+                            <div class="step"><div class="step-number">1</div><div class="step-text">Validar solicitação</div></div>
+                        </div>
+                        <div class="decision-box">
+                            <h4>Decisão</h4>
+                            <div class="decision-item">
+                                <span class="decision-arrow">→</span>
+                                <span><strong>Até 5 dias:</strong> ajustar diretamente</span>
+                            </div>
+                            <div class="decision-item">
+                                <span class="decision-arrow">→</span>
+                                <span><strong>Mais que 5 dias:</strong> encaminhar para N2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FLUXO 4: PIX -->
+            <div class="flow-header">🔁 Fluxo 4: PIX</div>
+
+            <div class="card" data-search="pix faturágil código vencimento 45 dias n2">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Como gerar/enviar PIX?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p class="label">Passo a passo:</p>
+                        <div class="steps">
+                            <div class="step"><div class="step-number">1</div><div class="step-text">Acessar Faturágil</div></div>
+                            <div class="step"><div class="step-number">2</div><div class="step-text">Copiar código</div></div>
+                            <div class="step"><div class="step-number">3</div><div class="step-text">Atualizar vencimento (até +10 dias)</div></div>
+                        </div>
+                        <div class="alert alert-danger">
+                            <span>⚠️</span>
+                            <span><strong>Regra:</strong> Pix &gt; 45 dias → encaminhar para N2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FLUXO 5: ADICIONAR CONTATO -->
+            <div class="flow-header">🔁 Fluxo 5: Adicionar Contato</div>
+
+            <div class="card" data-search="adicionar contato faturágil clientes cnpj email envio automático">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Como adicionar contato?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p class="label">Passo a passo:</p>
+                        <div class="steps">
+                            <div class="step"><div class="step-number">1</div><div class="step-text">Faturágil → Clientes</div></div>
+                            <div class="step"><div class="step-number">2</div><div class="step-text">Buscar CNPJ</div></div>
+                            <div class="step"><div class="step-number">3</div><div class="step-text">Aba contatos</div></div>
+                            <div class="step"><div class="step-number">4</div><div class="step-text">Inserir: <strong>Nome</strong> e <strong>E-mail</strong></div></div>
+                            <div class="step"><div class="step-number">5</div><div class="step-text">Marcar envio automático</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FLUXO 6: REVISÃO DE PLANO -->
+            <div class="flow-header">🔁 Fluxo 6: Revisão de Plano</div>
+
+            <div class="card" data-search="revisão plano cálculo faturamento formulário">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Como funciona a revisão de plano?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p class="label">Passo a passo:</p>
+                        <div class="steps">
+                            <div class="step"><div class="step-number">1</div><div class="step-text">Explicar cálculo</div></div>
+                            <div class="step"><div class="step-number">2</div><div class="step-text">Validar faturamento</div></div>
+                        </div>
+                        <div class="decision-box">
+                            <h4>Decisão</h4>
+                            <div class="decision-item">
+                                <span class="decision-arrow">→</span>
+                                <span><strong>Concorda:</strong> encerrar atendimento</span>
+                            </div>
+                            <div class="decision-item">
+                                <span class="decision-arrow">→</span>
+                                <span><strong>Discorda:</strong> enviar formulário de revisão</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. ALTERAÇÕES CADASTRAIS -->
+        <div class="section" id="alteracoes">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--accent-light); color: #d97706;">🔄</div>
+                <h2>4. FAQ – Alterações Cadastrais</h2>
+            </div>
+
+            <div class="card" data-search="alterar email ezproc formulário assinatura n2">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Alterar e-mail no EZPROC</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="steps">
+                            <div class="step"><div class="step-number">1</div><div class="step-text">Enviar formulário</div></div>
+                            <div class="step"><div class="step-number">2</div><div class="step-text">Solicitar assinatura</div></div>
+                            <div class="step"><div class="step-number">3</div><div class="step-text">Encaminhar para N2</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="alterar email coupa cnpj planilha convite">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Alterar e-mail no Coupa</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="steps">
+                            <div class="step"><div class="step-number">1</div><div class="step-text">Coletar: <strong>Novo e-mail</strong> e <strong>CNPJ</strong></div></div>
+                            <div class="step"><div class="step-number">2</div><div class="step-text">Preencher planilha interna</div></div>
+                            <div class="step"><div class="step-number">3</div><div class="step-text">Enviar novo convite</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="adicionar usuário minha conta email">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Adicionar usuário</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="steps">
+                            <div class="step"><div class="step-number">1</div><div class="step-text">Minha Conta</div></div>
+                            <div class="step"><div class="step-number">2</div><div class="step-text">Usuários</div></div>
+                            <div class="step"><div class="step-number">3</div><div class="step-text">Adicionar e-mail</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="regularização cep inválido endereço atualizar">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Regularização de CEP</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="steps">
+                            <div class="step"><div class="step-number">1</div><div class="step-text">Validar CEP inválido</div></div>
+                            <div class="step"><div class="step-number">2</div><div class="step-text">Solicitar: <strong>CEP correto</strong> e <strong>Endereço completo</strong></div></div>
+                            <div class="step"><div class="step-number">3</div><div class="step-text">Atualizar sistema</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="alterar forma pagamento método mensal anual n2">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Alterar forma de pagamento</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="steps">
+                            <div class="step"><div class="step-number">1</div><div class="step-text">Coletar: <strong>Método</strong> e <strong>Tipo</strong> (mensal/anual)</div></div>
+                            <div class="step"><div class="step-number">2</div><div class="step-text">Encaminhar para N2</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. COUPA -->
+        <div class="section" id="coupa">
+            <div class="section-header">
+                <div class="section-icon" style="background: #fce7f3; color: #db2777;">🛒</div>
+                <h2>5. FAQ – Coupa</h2>
+            </div>
+
+            <div class="card" data-search="o que é coupa plataforma compras cotação pedido comunicação">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>O que é o Coupa?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p>Plataforma de compras para:</p>
+                        <ul class="check-list">
+                            <li>Cotação</li>
+                            <li>Pedido</li>
+                            <li>Comunicação</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="participar cotação convite link proposta enviar">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Como participar de uma cotação?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="steps">
+                            <div class="step"><div class="step-number">1</div><div class="step-text">Receber convite</div></div>
+                            <div class="step"><div class="step-number">2</div><div class="step-text">Abrir link</div></div>
+                            <div class="step"><div class="step-number">3</div><div class="step-text">Clicar "Participar"</div></div>
+                            <div class="step"><div class="step-number">4</div><div class="step-text">Inserir proposta</div></div>
+                            <div class="step"><div class="step-number">5</div><div class="step-text">Enviar</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="responder evento inserir resposta preço dados">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Como responder evento?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="steps">
+                            <div class="step"><div class="step-number">1</div><div class="step-text">Abrir evento</div></div>
+                            <div class="step"><div class="step-number">2</div><div class="step-text">Clicar "Inserir resposta"</div></div>
+                            <div class="step"><div class="step-number">3</div><div class="step-text">Preencher: <strong>Preço</strong> e <strong>Dados</strong></div></div>
+                            <div class="step"><div class="step-number">4</div><div class="step-text">Enviar</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="valida proposta enviadas">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>O que valida uma proposta?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="alert alert-success">
+                            <span>ℹ️</span>
+                            <span>Apenas propostas <strong>efetivamente enviadas</strong> são consideradas válidas.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="não recebeu convite spam email cadastrado domínio">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Não recebeu convite?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p class="label">Verificar:</p>
+                        <ul class="check-list">
+                            <li>Spam</li>
+                            <li>E-mail cadastrado</li>
+                            <li>Domínio liberado</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="navegador recomendado chrome">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Navegador recomendado</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="alert alert-info">
+                            <span>🌐</span>
+                            <span><strong>Google Chrome</strong> é o navegador recomendado para uso do Coupa.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. HOMOLOGAÇÃO -->
+        <div class="section" id="homologacao">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--success-light); color: var(--success);">🧾</div>
+                <h2>6. FAQ – Homologação (G-Certifica / Linkana)</h2>
+            </div>
+
+            <div class="card" data-search="quando inicia homologação cadastro adesão aprovação">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Quando inicia a homologação?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p>Após:</p>
+                        <div class="steps">
+                            <div class="step"><div class="step-number">1</div><div class="step-text">Cadastro</div></div>
+                            <div class="step"><div class="step-number">2</div><div class="step-text">Adesão</div></div>
+                            <div class="step"><div class="step-number">3</div><div class="step-text">Aprovação</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="etapas jornada homologação aceites código conduta dados fiscais bancários sustentabilidade documentos upload">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Etapas da jornada de homologação</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-text">
+                                    <strong>Aceites</strong>
+                                    <ul class="bullet-list"><li>Código de conduta</li><li>Termos</li></ul>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-text">
+                                    <strong>Dados gerais</strong>
+                                    <ul class="bullet-list"><li>Dados fiscais</li><li>Bancários</li></ul>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-text">
+                                    <strong>Sustentabilidade</strong>
+                                    <ul class="bullet-list"><li>Questionário</li></ul>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-text">
+                                    <strong>Documentos</strong>
+                                    <ul class="bullet-list"><li>Upload + validade</li></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="problemas comuns dados bancários inválidos pendências validar">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Problemas comuns na homologação</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="decision-box">
+                            <div class="decision-item">
+                                <span class="badge badge-danger">Dados bancários inválidos</span>
+                                <span>→ Corrigir e validar novamente</span>
+                            </div>
+                            <div class="decision-item">
+                                <span class="badge badge-warning">Pendências</span>
+                                <span>→ Clicar "Validar e próximo"</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="status homologação análise reprovado aprovado bloqueio">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Status da homologação</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="info-grid" style="grid-template-columns: 1fr 1fr 1fr;">
+                            <div class="info-item" style="text-align: center;">
+                                <div class="info-label">Status</div>
+                                <div class="info-value"><span class="badge badge-info">Em análise</span></div>
+                            </div>
+                            <div class="info-item" style="text-align: center;">
+                                <div class="info-label">Status</div>
+                                <div class="info-value"><span class="badge badge-danger">Reprovado</span></div>
+                                <div style="font-size: 0.8rem; color: var(--gray-500); margin-top: 4px;">Ajustar pendências</div>
+                            </div>
+                            <div class="info-item" style="text-align: center;">
+                                <div class="info-label">Status</div>
+                                <div class="info-value"><span class="badge badge-success">Aprovado</span></div>
+                            </div>
+                        </div>
+                        <div class="alert alert-danger">
+                            <span>🚫</span>
+                            <span><strong>Regra crítica:</strong> Sem homologação → bloqueio do fornecedor</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. POWER BI -->
+        <div class="section" id="powerbi">
+            <div class="section-header">
+                <div class="section-icon" style="background: #fef3c7; color: #d97706;">📊</div>
+                <h2>7. FAQ – Power BI</h2>
+            </div>
+
+            <div class="card" data-search="buscar fornecedor power bi cnpj raiz ezproc fatura ágil">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>Como buscar fornecedor no Power BI?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p class="label">Passo a passo:</p>
+                        <div class="steps">
+                            <div class="step"><div class="step-number">1</div><div class="step-text">Inserir raiz do CNPJ</div></div>
+                            <div class="step"><div class="step-number">2</div><div class="step-text">Verificar abas: <strong>EZPROC</strong> e <strong>Fatura Ágil</strong></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="analisar power bi cadastro plano pagamento coupa faturamento">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">❓</span>
+                    <h3>O que analisar no Power BI?</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <ul class="check-list">
+                            <li>Cadastro</li>
+                            <li>Plano</li>
+                            <li>Pagamento</li>
+                            <li>Coupa</li>
+                            <li>Faturamento</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. CASOS ESPECIAIS -->
+        <div class="section" id="especiais">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--danger-light); color: var(--danger);">⚠️</div>
+                <h2>8. Casos Especiais</h2>
+            </div>
+
+            <div class="card" data-search="duplicidade pagamento bi competência comprovantes cnpj">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">🔁</span>
+                    <h3>Duplicidade de pagamento</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p class="label">Passo a passo:</p>
+                        <div class="steps">
+                            <div class="step"><div class="step-number">1</div><div class="step-text">Verificar BI</div></div>
+                            <div class="step"><div class="step-number">2</div><div class="step-text">Validar competência</div></div>
+                            <div class="step"><div class="step-number">3</div><div class="step-text">Solicitar comprovantes</div></div>
+                        </div>
+                        <div class="alert alert-warning">
+                            <span>⚠️</span>
+                            <div>
+                                <strong>Atenção:</strong>
+                                <ul class="bullet-list">
+                                    <li>Competência ≠ data de pagamento</li>
+                                    <li>Validar CNPJ correto</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="estorno solicitação evidências elegibilidade aprovar recusar">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">🔁</span>
+                    <h3>Estorno</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p class="label">Passo a passo:</p>
+                        <div class="steps">
+                            <div class="step"><div class="step-number">1</div><div class="step-text">Receber solicitação</div></div>
+                            <div class="step"><div class="step-number">2</div><div class="step-text">Validar evidências</div></div>
+                            <div class="step"><div class="step-number">3</div><div class="step-text">Analisar elegibilidade</div></div>
+                            <div class="step"><div class="step-number">4</div><div class="step-text">Aprovar ou recusar</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="cancelamento aviso prévio 30 dias multa acesso">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">🔁</span>
+                    <h3>Cancelamento</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p class="label">Regras:</p>
+                        <ul class="check-list">
+                            <li>Aviso prévio: <strong>30 dias</strong></li>
+                            <li>Sem multa</li>
+                            <li>Acesso mantido até o fim do período</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-search="renovação automática cartão cancelar 30 dias">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <span class="icon">🔁</span>
+                    <h3>Renovação automática</h3>
+                    <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p class="label">Regras:</p>
+                        <ul class="check-list">
+                            <li>Via cartão</li>
+                            <li>Renovação automática</li>
+                            <li>Cancelar com <strong>30 dias</strong> de antecedência</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9. BOAS PRÁTICAS -->
+        <div class="section" id="boas-praticas">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--danger-light); color: var(--danger);">📌</div>
+                <h2>9. Boas Práticas (CRÍTICO)</h2>
+            </div>
+
+            <div class="best-practice">
+                <div class="bp-icon">1</div>
+                <div class="bp-text">Sempre validar <strong>CNPJ correto</strong></div>
+            </div>
+            <div class="best-practice">
+                <div class="bp-icon">2</div>
+                <div class="bp-text">Conferir <strong>competência</strong></div>
+            </div>
+            <div class="best-practice">
+                <div class="bp-icon">3</div>
+                <div class="bp-text">Verificar <strong>histórico</strong> antes de orientar</div>
+            </div>
+            <div class="best-practice">
+                <div class="bp-icon">4</div>
+                <div class="bp-text">Confirmar <strong>etapa do fornecedor</strong></div>
+            </div>
+            <div class="best-practice">
+                <div class="bp-icon">5</div>
+                <div class="bp-text">Nunca assumir <strong>sem evidência</strong></div>
+            </div>
+            <div class="best-practice">
+                <div class="bp-icon">6</div>
+                <div class="bp-text">Direcionar corretamente para <strong>N2</strong></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>FAQ Interno – EZPROC + COUPA + FINANCEIRO | Baseado no material "Macros - Atualizadas"</p>
+    </div>
+
+    <script>
+        function toggleCard(header) {
+            const card = header.parentElement;
+            card.classList.toggle('open');
+        }
+
+        function filterCards() {
+            const query = document.getElementById('searchInput').value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            const cards = document.querySelectorAll('.card');
+            const sections = document.querySelectorAll('.section');
+
+            cards.forEach(card => {
+                const searchData = (card.getAttribute('data-search') || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                const headerText = (card.querySelector('h3')?.textContent || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                const bodyText = (card.querySelector('.card-content')?.textContent || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                const match = searchData.includes(query) || headerText.includes(query) || bodyText.includes(query);
+
+                card.style.display = match ? '' : 'none';
+                if (match && query.length > 0) {
+                    card.classList.add('open');
+                }
+            });
+
+            // Show/hide sections based on whether they have visible cards
+            sections.forEach(section => {
+                const visibleCards = section.querySelectorAll('.card:not([style*="display: none"])');
+                const flowHeaders = section.querySelectorAll('.flow-header');
+
+                if (query.length === 0) {
+                    section.style.display = '';
+                    flowHeaders.forEach(fh => fh.style.display = '');
+                } else {
+                    section.style.display = visibleCards.length > 0 ? '' : 'none';
+                    flowHeaders.forEach(fh => fh.style.display = visibleCards.length > 0 ? '' : 'none');
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
